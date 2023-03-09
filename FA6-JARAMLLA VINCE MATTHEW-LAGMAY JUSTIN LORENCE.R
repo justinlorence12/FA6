@@ -5,12 +5,14 @@ dist <- dgeom(x = n, prob = p)
 round(dist, 5)
 
 #generating 1000 random variables
-rand <- rgeom(n = 1000, prob = p)
-mean_rand <- mean(rand)
+beforerand <- rgeom(n = 1000, prob = p)
+rand <-beforerand+1
+
+mean_rand <- round(mean(rand),2)
 mean_rand
-var_rand <- var(rand)
+var_rand <- round(var(rand),2)
 var_rand
-sd_rand <- sd(rand)
+sd_rand <- round(sd(rand),2)
 sd_rand
 
 library(dplyr)
@@ -30,3 +32,5 @@ data.frame(x = 0:12, prob = dgeom(x = 0:12, prob = p)) %>%
        subtitle = "Geometric(.2)",
        x = "Failures prior to first success (x)",
        y = "Probability") 
+
+hist(rand, main="Histogram of Random Variables",xlab="Random Variables")
